@@ -1,0 +1,44 @@
+---
+title: "Test"
+runtime: shiny
+output: html_document
+author: "Suvarna S"
+date: "12-Mar-2017"
+---
+```{r,echo=FALSE}
+
+# This is a comment
+# Press control+alt+ i 
+library(knitr)
+library(ggplot2)
+opts_chunk$set(echo=TRUE ,warnings= FALSE ,message= FALSE)
+
+data("diamonds")
+```
+```{r}
+
+```
+
+# Inputs {#Inputs}
+```{r input-panel-simple}
+inputPanel(checkboxGroupInput('checkGroup',label = 'Checkbox Group',choices = list("Choice 1"=1,"Choice2 "=2,"Choice3 "=3),selected = 1))
+
+```
+## Diamonds Input {#DiamondsInput}
+```{r diamonds-input}
+inputPanel(checkboxGroupInput(inputId = 'checkGroup_cut',label = 'Diamond Cut',choices = list("Ideal","Premium","Good","Very Good","Fair"),selected="Ideal"))
+
+```
+
+```{r check- Inputs}
+renderPrint(input$checkGroup_cut)
+```
+
+# Interactive Plot {# Interactive Plot}
+
+
+```{r Interactive Plot}
+renderPlot({ggplot(diamonds[diamonds$cut %in% input$checkGroup_cut,],aes(x=carat ,y=price,color=cut))+geom_point()})
+```
+
+

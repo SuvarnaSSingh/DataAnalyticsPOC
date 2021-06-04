@@ -1,0 +1,43 @@
+---
+title: "Test"
+runtime: shiny
+output: html_document
+author:"Suvarna "
+date:"05/31/2017"
+---
+```{r, echo=FALSE}
+
+library(knitr)
+library(ggplot2)
+install.packages("shiny")
+install.packages("backports")
+library(shiny)
+require(shiny)
+require(backports)
+opts_chunk$set(echo = TRUE , warning = FALSE , message = FALSE)
+data("diamonds")
+
+
+```
+
+
+# Inputs {#Inputs}
+
+```{r input-panel-simple}
+
+inputPanel(checkboxGroupInput('checkGroup', label = 'Checkbox Group', choices = list("Choice 1" = 1, "Choice 2" = 2,"Choice 3" = 3), selected = 1))
+
+```
+
+# Interactive Plot {#InteractivePlot}
+
+```{r}
+renderPlot({
+ ggplot(diamonds[diamonds$cut] %in% )
+  
+}
+           
+           )
+```
+
+

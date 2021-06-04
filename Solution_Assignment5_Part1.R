@@ -1,0 +1,94 @@
+install.packages("mlbench")
+library(mlbench)
+install.packages("e1071")
+library(e1071)
+
+data("HouseVotes84")
+
+class(HouseVotes84)
+HouseVotes84
+
+trainingData<-HouseVotes84[1:434,]
+trainingData
+testingData<-HouseVotes84[435,]
+testingData
+VotingModel<-naiveBayes(HouseVotes84$Class~HouseVotes84$V1+HouseVotes84$V2+HouseVotes84$V3+HouseVotes84$V4+HouseVotes84$V5+HouseVotes84$V6+HouseVotes84$V7+HouseVotes84$V8+HouseVotes84$V9+HouseVotes84$V10+HouseVotes84$V11+HouseVotes84$V12+HouseVotes84$V13+HouseVotes84$V14+HouseVotes84$V15+HouseVotes84$V16,data=trainingData)
+VotingModel
+
+testingData
+VotingPrediction<-predict(VotingModel,testingData)
+VotingPrediction
+
+VotingDataParty<-table(trainingData$Class)
+VotingDataParty
+VotingDataParty<-VotingDataParty/sum(VotingDataParty)
+VotingDataParty
+
+class(trainingData)
+trainingdata
+v1Count<-table(trainingData[,c("Class","V1")])
+v1Count
+v1Count<-v1Count/rowSums(v1Count)
+v1Count
+v2Count<-table(trainingData[,c("Class","V2")])
+v2Count<-v1Count/rowSums(v2Count)
+v2Count
+v3Count<-table(trainingData[,c("Class","V3")])
+v3Count<-v1Count/rowSums(v3Count)
+v3Count
+v4Count<-table(trainingData[,c("Class","V4")])
+v4Count<-v1Count/rowSums(v4Count)
+v4Count
+v5Count<-table(trainingData[,c("Class","V5")])
+v5Count<-v1Count/rowSums(v5Count)
+v5Count
+v6Count<-table(trainingData[,c("Class","V6")])
+v6Count<-v1Count/rowSums(v6Count)
+v6Count
+v7Count<-table(trainingData[,c("Class","V7")])
+v7Count<-v1Count/rowSums(v7Count)
+v7Count
+v8Count<-table(trainingData[,c("Class","V8")])
+v8Count<-v1Count/rowSums(v8Count)
+v8Count
+v9Count<-table(trainingData[,c("Class","V9")])
+v9Count<-v1Count/rowSums(v9Count)
+v9Count
+v10Count<-table(trainingData[,c("Class","V10")])
+v10Count<-v1Count/rowSums(v10Count)
+v10Count
+v11Count<-table(trainingData[,c("Class","V11")])
+v11Count<-v1Count/rowSums(v11Count)
+v11Count
+v12Count<-table(trainingData[,c("Class","V12")])
+v12Count<-v1Count/rowSums(v12Count)
+v12Count
+v13Count<-table(trainingData[,c("Class","V13")])
+v13Count<-v1Count/rowSums(v13Count)
+v13Count
+v14Count<-table(trainingData[,c("Class","V14")])
+v14Count<-v1Count/rowSums(v14Count)
+v14Count
+v15Count<-table(trainingData[,c("Class","V15")],na.rm=TRUE)
+v15Count<-v1Count/rowSums(v15Count)
+v15Count
+v16Count<-table(trainingData[,c("Class","V16")])
+v16Count<-v1Count/rowSums(v16Count)
+v16Count
+
+testingData
+ProbabilityRepublican<-v1Count["republican",testingData[,c("V1")]]*v2Count["republican",testingData[,c("V2")]]*
+  v3Count["republican",testingData[,c("V3")]]*v4Count["republican",testingData[,c("V4")]]*v5Count["republican",testingData[,c("V5")]]*
+  v6Count["republican",testingData[,c("V6")]]*v7Count["republican",testingData[,c("V7")]]*v8Count["republican",testingData[,c("V8")]]*v9Count["republican",testingData[,c("V9")]]*
+  v10Count["republican",testingData[,c("V10")]]*v11Count["republican",testingData[,c("V11")]]*v12Count["republican",testingData[,c("V12")]]*
+  v13Count["republican",testingData[,c("V13")]]*v14Count["republican",testingData[,c("V14")]]*
+  v16Count["republican",testingData[,c("V16")]]*VotingDataParty["republican"]
+ProbabilityRepublican
+
+Probabilitydemocrat<-v1Count["democrat",testingData[,c("V1")]]*v2Count["democrat",testingData[,c("V2")]]*
+  v3Count["democrat",testingData[,c("V3")]]*v4Count["democrat",testingData[,c("V4")]]*v5Count["democrat",testingData[,c("V5")]]*
+  v6Count["democrat",testingData[,c("V6")]]*v7Count["democrat",testingData[,c("V7")]]*v8Count["democrat",testingData[,c("V8")]]*v9Count["democrat",testingData[,c("V9")]]*
+  v10Count["democrat",testingData[,c("V10")]]*v11Count["democrat",testingData[,c("V11")]]*v12Count["democrat",testingData[,c("V12")]]*
+  v13Count["democrat",testingData[,c("V13")]]*v14Count["democrat",testingData[,c("V14")]]*
+  v16Count["democrat",testingData[,c("V16")]]*VotingDataParty["democrat"]
+Probabilitydemocrat

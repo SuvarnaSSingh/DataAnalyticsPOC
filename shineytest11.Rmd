@@ -1,0 +1,16 @@
+---
+title: "ShineyTestPractice"
+output: html_document
+author: "Suvarna"
+date:  "10-may-2017"
+---
+
+```{r,echo=FALSE}
+#This is a comment 
+```
+
+
+```{r}
+ # use ctrl+alt+ i  to create this block as shiney creates markdown documents as it will not understand the r comments hence to include r code in this markdown document we need to create this block and add code inside it 
+```
+

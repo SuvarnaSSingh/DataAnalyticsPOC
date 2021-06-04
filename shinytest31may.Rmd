@@ -1,0 +1,16 @@
+---
+title: "Test"
+runtime: shiny
+output: html_document
+author:"Suvarna "
+date:"05/31/2017"
+---
+```{r.echo=FALSE}
+
+```
+
+
+```{r}
+  # this block we get when we presss ctrl+alt +i together 
+```
+
